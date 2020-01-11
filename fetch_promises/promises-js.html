@@ -13,6 +13,13 @@
     />
   </head>
   <body>
+    <button id="promise" class="btn btn-primary ml-4 mr-4">
+      Get promised Users
+    </button>
+    <button id="promiseAll" class="btn btn-warning ml-4">
+      Get promised all
+    </button>
+    <div id="output"></div>
     <script>
       const posts = [
         { id: 1, name: 'user1', city: 'Miami' },
@@ -35,7 +42,7 @@
                 </ul>
                     `;
           });
-          document.body.innerHTML = output;
+          document.getElementById('output').innerHTML = output;
         }, 1000);
       }
 
@@ -51,9 +58,27 @@
         });
       }
 
-      createPost({ id: 1000, name: 'Alex', city: 'Miami' })
-        .then(getPosts)
-        .catch(err => console.log(err));
+      document.getElementById('promise').addEventListener('click', () => {
+        createPost({ id: 1000, name: 'Alex', city: 'Miami' })
+          .then(getPosts)
+          .catch(err => console.log(err));
+      });
+      document.getElementById('promiseAll').addEventListener('click', () => {
+        const promise1 = Promise.resolve('Hello World!');
+        const promise2 = 10;
+        const promise3 = new Promise((res, rej) => {
+          setTimeout(res, 2000, 'Goodbye');
+        });
+        const promise4 = fetch(
+          'https://jsonplaceholder.typicode.com/users'
+        ).then(response => response.json());
+
+        Promise.all([promise1, promise2, promise3, promise4]).then(values =>
+          console.log(values)
+        );
+      });
+
+      //promise.all
     </script>
   </body>
 </html>
