@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="getText">Get Text</button>
+    <div id="output"></div>
+
+    <script>
+      document.getElementById('getText').addEventListener('click', getText);
+
+      function getText() {
+        fetch('simple.txt')
+          .then(res => res.text())
+          .then(data => (document.getElementById('output').innerHTML = data));
+      }
+
+      //2.with regular function
+      //   function getText() {
+      //     fetch('simple.txt')
+      //       .then(function(res) {
+      //         return res.text();
+      //       })
+      //       .then(function(data) {
+      //         console.log(data);
+      //       });
+      //   }
+
+      //3.if it's JSON file
+      //   function getText() {
+      //     fetch('simple.json').then(function(res) {
+      //       console.log(res.json());
+      //     });
+      //   }
+    </script>
+    <!-- <script src="./fetch.js"></script> -->
+  </body>
+</html>
