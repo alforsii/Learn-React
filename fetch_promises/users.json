@@ -1,0 +1,9 @@
+[
+  { "id": 1, "name": "user1", "city": "Miami" },
+  { "id": 2, "name": "user2", "city": "Barcelona" },
+  { "id": 3, "name": "user3", "city": "Madrid" },
+  { "id": 4, "name": "user4", "city": "Barcelona" },
+  { "id": 5, "name": "user5", "city": "Madrid" },
+  { "id": 6, "name": "user6", "city": "Barcelona" },
+  { "id": 7, "name": "user7", "city": "Madrid" }
+]
