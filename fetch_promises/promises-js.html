@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promises</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <script>
+      const posts = [
+        { id: 1, name: 'user1', city: 'Miami' },
+        { id: 2, name: 'user2', city: 'Barcelona' },
+        { id: 3, name: 'user3', city: 'Madrid' },
+        { id: 4, name: 'user4', city: 'Barcelona' },
+        { id: 5, name: 'user5', city: 'Madrid' },
+        { id: 6, name: 'user6', city: 'Barcelona' },
+        { id: 7, name: 'user7', city: 'Madrid' },
+      ];
+      function getPosts() {
+        setTimeout(() => {
+          let output = '';
+          posts.forEach((post, index) => {
+            output += `
+                <ul class = 'list-group mt-4 mr-3 mb-4 ml-3'>
+                    <li class = 'list-group-item list-group-item-danger'>ID: ${post.id}</li>
+                    <li class = 'list-group-item list-group-item-success'>Name: ${post.name}</li>
+                    <li class = 'list-group-item list-group-item-warning'>City: ${post.city}</li>
+                </ul>
+                    `;
+          });
+          document.body.innerHTML = output;
+        }, 1000);
+      }
+
+      function createPost(post) {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            posts.push(post);
+            const error = false;
+
+            if (!error) res();
+            else rej('Error: Something went wrong');
+          }, 2000);
+        });
+      }
+
+      createPost({ id: 1000, name: 'Alex', city: 'Miami' })
+        .then(getPosts)
+        .catch(err => console.log(err));
+    </script>
+  </body>
+</html>
